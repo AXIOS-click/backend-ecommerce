@@ -18,6 +18,7 @@ class Express {
     // Registrando excepciones y errores
     this.express.use(ExceptionHandler.clientErrorHandler);
     this.express.use(ExceptionHandler.errorHandler);
+    this.express.use(ExceptionHandler.syntaxErrorHandler);
     this.express = ExceptionHandler.notFoundHandler(this.express);
 
     this.express.listen(port, () => {

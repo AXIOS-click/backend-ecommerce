@@ -70,7 +70,16 @@ class Handler {
     });
   }
 
-
+  /**
+   * Capturar error de syntaxis
+   */
+  public static syntaxErrorHandler(err: any, req: Request, res: Response, next: any): any {
+    Log.error(err.stack);
+    const responses = new Responses(res);
+    if(err instanceof SyntaxError) {
+      return responses.badRequest(`Syntax error in request body`);
+    }
+  }
 }
 
 export default Handler;
