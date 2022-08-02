@@ -1,8 +1,9 @@
 /**
  * Define Las configuraciones de la app
  */
- import * as path from 'path';
- import * as dotenv from 'dotenv';
+import * as path from 'path';
+import * as dotenv from 'dotenv';
+import { Application } from 'express';
 
 class Locals {
   public static config(): any{
@@ -22,6 +23,13 @@ class Locals {
       api_prefix
     };
   }
+  /**
+	 * Inyecta la configuración de las variables de entorno
+	 */
+	public static init (_express: Application): Application {
+		_express.locals.app = this.config();
+		return _express;
+	}
 }
 
 export default Locals;
