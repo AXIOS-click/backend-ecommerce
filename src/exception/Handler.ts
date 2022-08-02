@@ -5,6 +5,7 @@
 import { Request, Response } from "express";
 import Responses from "../providers/Responses";
 import Locals from "../providers/Locals";
+import Log from "../middlewares/Log";
 
 
 class Handler {
@@ -14,11 +15,11 @@ class Handler {
   public static notFoundHandler(_express: any): any{
     const apiPrefix = Locals.config().api_prefix;
 
-    _express.use('*', (req: Request, res: Response) => {
+      _express.use('*', (req: Request, res: Response) => {
       const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
       const responses = new Responses(res);
 
-      console.log(`Path '${req.originalUrl}' not found [IP: '${ip}']!`);
+      Log.error(`Path '${req.originalUrl}' not found [IP: '${ip}']!`);
 
       // if para ver que venga por peticion api
       if (req.xhr || req.originalUrl.includes(`/${apiPrefix}/`)) {
