@@ -13,7 +13,7 @@ class Handler {
 	 * Maneja todas las rutas no encontradas
 	 */
   public static notFoundHandler(_express: any): any{
-    const apiPrefix = Locals.config().api_prefix;
+    const api_prefix = Locals.config().api_prefix;
 
       _express.use('*', (req: Request, res: Response) => {
       const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
@@ -22,7 +22,7 @@ class Handler {
       Log.error(`Path '${req.originalUrl}' not found [IP: '${ip}']!`);
 
       // if para ver que venga por peticion api
-      if (req.xhr || req.originalUrl.includes(`/${apiPrefix}/`)) {
+      if (req.xhr || req.originalUrl.includes(`/${api_prefix}/`)) {
 				return responses.notFound(`Path '${req.originalUrl}' not found`);
 			}
     })
@@ -46,9 +46,9 @@ class Handler {
   public static errorHandler(err: any, req: Request, res: Response, next: any): any {
     Log.error(err.stack);
 
-    const apiPrefix = Locals.config().apiPrefix;
+    const api_prefix = Locals.config().api_prefix;
     const responses = new Responses(res);
-		if (req.originalUrl.includes(`/${apiPrefix}/`)) {
+		if (req.originalUrl.includes(`/${api_prefix}/`)) {
       if (err.name && err.name === 'UnauthorizedError') {
 				const innerMessage = err.inner && err.inner.message ? err.inner.message : undefined;
 				return responses.internalServerError({

@@ -5,6 +5,7 @@ import express, { Application} from 'express';
 import Locals from "./Locals";
 import Bootstrap from '../middlewares/Kernel';
 import ExceptionHandler from "../exception/Handler";
+import Routes from "./Routes";
 
 class Express {
   public express: Application;
@@ -14,6 +15,7 @@ class Express {
 
     this.mountDotEnv();
     this.mountMiddlewares();
+    this.mountRoutes();
   }
 
   private mountDotEnv (): void {
@@ -26,6 +28,14 @@ class Express {
   private mountMiddlewares(): void {
     this.express = Bootstrap.init(this.express);
   }
+
+  /**
+	 * Monta todas las rutas
+	 */
+	private mountRoutes (): void {
+		this.express = Routes.mountApi(this.express);
+	}
+
   public init(): any{
     const port: number = Locals.config().port;
 
