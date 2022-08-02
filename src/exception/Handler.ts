@@ -32,7 +32,7 @@ class Handler {
 	 * Maneja los errores/excepciones de las rutas api
 	 */
   public static clientErrorHandler(err: any, req: Request, res: Response, next: any): any {
-		console.log(err.stack);
+		Log.error(err.stack);
     const responses = new Responses(res);
 		if (req.xhr) {
 			return responses.internalServerError('Something went wrong');
@@ -44,6 +44,8 @@ class Handler {
 	 * Mostrar la ruta mantenimiento en caso de errores
 	 */
   public static errorHandler(err: any, req: Request, res: Response, next: any): any {
+    Log.error(err.stack);
+
     const apiPrefix = Locals.config().apiPrefix;
     const responses = new Responses(res);
 		if (req.originalUrl.includes(`/${apiPrefix}/`)) {
@@ -67,6 +69,8 @@ class Handler {
       ]
     });
   }
+
+
 }
 
 export default Handler;
