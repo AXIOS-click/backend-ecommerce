@@ -1,11 +1,12 @@
 /**
  * Define todos los requisitos en HTTP
  */
-import bodyParser from "body-parser";
+import bodyParser, { json } from "body-parser";
 import { Application } from 'express';
 import compress from 'compression';
 import Log from "./Log";
 import cors from 'cors';
+import helmet from 'helmet';
 
 class Http{
   public static mount(_express: Application): Application {
@@ -16,6 +17,14 @@ class Http{
 			parameterLimit: 3000,
 			extended: false
 		}));
+    // habilitando el parseo de json
+    _express.use(json());
+
+    // Seguridad con helmet
+    _express.use(helmet.xssFilter());
+    _express.use(helmet.noSniff());
+    _express.use(helmet.hidePoweredBy());
+    _express.use(helmet.frameguard({ action: 'deny' }));
 
     // Habilita los CORS
 		_express.use(cors());
