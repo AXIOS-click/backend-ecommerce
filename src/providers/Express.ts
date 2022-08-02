@@ -3,6 +3,7 @@
  */
 import express, { Application} from 'express';
 import Locals from "./Locals";
+import Bootstrap from '../middlewares/Kernel';
 import ExceptionHandler from "../exception/Handler";
 
 class Express {
@@ -10,8 +11,14 @@ class Express {
 
   constructor() {
     this.express = express();
+    this.mountMiddlewares();
   }
-
+  /**
+	 * Monta todos los middlewares definidos
+	 */
+  private mountMiddlewares(): void {
+    this.express = Bootstrap.init(this.express);
+  }
   public init(): any{
     const port: number = Locals.config().port;
 

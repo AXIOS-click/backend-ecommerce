@@ -14,7 +14,7 @@
     "outDir": "./dist",
     "allowUnreachableCode": true,
     "alwaysStrict": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
   },
   "include": ["src/**/**.ts"],
   "exclude": ["node_modules"]
