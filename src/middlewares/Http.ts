@@ -1,7 +1,7 @@
 /**
  * Define todos los requisitos en HTTP
  */
-import bodyParser, { json } from "body-parser";
+import bodyParser from "body-parser";
 import { Application } from 'express';
 import compress from 'compression';
 import Log from "./Log";
@@ -18,13 +18,16 @@ class Http{
 			extended: false
 		}));
     // habilitando el parseo de json
-    _express.use(json());
+    _express.use(bodyParser.json({
+			limit: '10mb'
+		}));
 
     // Seguridad con helmet
     _express.use(helmet.xssFilter());
     _express.use(helmet.noSniff());
     _express.use(helmet.hidePoweredBy());
     _express.use(helmet.frameguard({ action: 'deny' }));
+    _express.use(helmet());
 
     // Habilita los CORS
 		_express.use(cors());
