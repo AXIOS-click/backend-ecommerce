@@ -57,7 +57,7 @@ class Responses {
       message: message
     });
   }
-  internalServerError(message: string){
+  internalServerError(message: any){
     this.res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
       ok: false,
       status: 'internalServerError',
@@ -68,6 +68,13 @@ class Responses {
     this.res.status(httpStatus.UNPROCESSABLE_ENTITY).json({
       ok: false,
       status: 'unprocessableEntity',
+      message: message
+    });
+  }
+  serviceUnavailable(message: any){
+    this.res.status(httpStatus.SERVICE_UNAVAILABLE).json({
+      ok: false,
+      status: 'serviceUnavailable',
       message: message
     });
   }

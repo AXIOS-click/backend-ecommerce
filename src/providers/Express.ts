@@ -16,7 +16,8 @@ class Express {
     const port: number = Locals.config().port;
 
     // Registrando excepciones y errores
-    this.express.use(ExceptionHandler.clientErrorHandler)
+    this.express.use(ExceptionHandler.clientErrorHandler);
+    this.express.use(ExceptionHandler.errorHandler);
     this.express = ExceptionHandler.notFoundHandler(this.express);
 
     this.express.listen(port, () => {

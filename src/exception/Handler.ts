@@ -39,6 +39,33 @@ class Handler {
 			return next(err);
 		}
   }
+  /**
+	 * Mostrar la ruta mantenimiento en caso de errores
+	 */
+  public static errorHandler(err: any, req: Request, res: Response, next: any): any {
+    const apiPrefix = Locals.config().apiPrefix;
+    const responses = new Responses(res);
+		if (req.originalUrl.includes(`/${apiPrefix}/`)) {
+      if (err.name && err.name === 'UnauthorizedError') {
+				const innerMessage = err.inner && err.inner.message ? err.inner.message : undefined;
+				return responses.internalServerError({
+					error: [
+						'Invalid Token!',
+						innerMessage
+					]
+				});
+			}
+
+			return res.json({
+				error: err
+			});
+    }
+    return responses.serviceUnavailable({
+      error: [
+        err.stack
+      ]
+    });
+  }
 }
 
 export default Handler;
