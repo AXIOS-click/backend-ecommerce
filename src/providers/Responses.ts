@@ -30,7 +30,7 @@ class Responses {
     });
   }
   notFound(message: string){
-    this.res.status(httpStatus.NOT_FOUND).json({
+    this.res.status(404).json({
       ok: false,
       status: 'notFound',
       message: message
