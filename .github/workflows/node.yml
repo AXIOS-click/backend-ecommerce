@@ -24,11 +24,12 @@ jobs:
       - name: build readme
         run: |
           npm run create-readme
+          git remote add origin https://github.com/AXIOS-click/backend-ecommerce.git
           git config user.name ${{ secrets.USERNAME }}
           git config user.email ${{ secrets.USER_EMAIL }}
           git add readme.md
           git commit -m "(📚 test) Update README.md by GH Actions"
-          git push --all -f https://${{ secrets.GITHUB_TOKEN }}@github.com/AXIOS-click/backend-ecommerce.git
+          git push origin main
 
       - name: npm test
         run: |
