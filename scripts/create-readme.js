@@ -50,7 +50,7 @@ function nodeversion(){
 const construir_readme = async (vulneravilidades, node_version, pass_test) => {
   const vulns = await vulneravilidades;
   // leer el archivo README.md y abrirlo en un buffer
-  const readme_path = path.join(__dirname, '../README.md');
+  const readme_path = path.join(__dirname, '../readme.md');
   const readme_buffer = fs.readFileSync(readme_path);
   // convertir el buffer a string
   const readme_string = readme_buffer.toString();
