@@ -1,6 +1,6 @@
 // .huskyrc.js
 module.exports = {
   hooks: {
-    "pre-commit": "npm run create-readme",
+    "pre-commit": "node scripts/create-readme",
   },
 };
