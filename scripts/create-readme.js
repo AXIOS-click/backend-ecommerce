@@ -28,9 +28,6 @@ function extraer_failes_npm_test(){
         reject('❌');
         return;
       }
-      if (stderr) {
-        console.log(`stderr: ${stderr}`);
-      }
       resolve('✅');
     });
   }).then(vulns => {
@@ -62,6 +59,7 @@ const construir_readme = async (vulneravilidades, node_version, pass_test) => {
   const readme_buffer_reemplazado = Buffer.from(readme_string_reemplazado);
   // escribir el buffer en el archivo README.md
   fs.writeFileSync(readme_path, readme_buffer_reemplazado);
+  console.log('README.md actualizado');
 }
 
 
