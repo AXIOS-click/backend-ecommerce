@@ -24,6 +24,11 @@ jobs:
       - name: build readme
         run: |
           npm run create-readme
+          git config user.name ${{ secrets.USERNAME }}
+          git config user.email ${{ secrets.USER_EMAIL }}
+          git add README.md
+          git commit -m "(📚 test) Update README.md by GH Actions"
+          git push origin main
       - name: npm test
         run: |
           npm test
