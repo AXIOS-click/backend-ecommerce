@@ -52,7 +52,7 @@ const construir_readme = async (vulneravilidades, node_version, pass_test) => {
   // convertir el buffer a string
   const readme_string = readme_buffer.toString();
   // buscar la linea que contiene la cantidad de vulnerabilidades
-  const linea_vuln = readme_string.split("\n").find(linea => linea.includes("'insertlable'"));
+  const linea_vuln = readme_string.split("\n").find(linea => linea.includes("|v16"));
   // reemplazar la linea por la cantidad de vulnerabilidades
   const readme_string_reemplazado = readme_string.replace(linea_vuln, `|${node_version}|${vulns}|${pass_test}|`);
   // convertir el string a buffer
