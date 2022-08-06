@@ -7,7 +7,8 @@
     "dev": "ts-node-dev ./src/index.ts",
     "test": "cucumber-js -p default",
     "build": "tsc -p tsconfig.prod.json",
-    "start": "node ./dist/src/index.js"
+    "start": "node ./dist/src/index.js",
+    "create-readme": "node scripts/create-readme"
   },
   "repository": {
     "type": "git",

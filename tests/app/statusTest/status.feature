@@ -9,5 +9,5 @@ Feature: Api status
 
   Scenario: Verifica respuesta fallida controlada
     Given Envío una petición GET a "/asdfasdf"
-    Then El código de estado de la respuesta debe ser 404
+    Then El código de estado de la respuesta debe ser 405
 
