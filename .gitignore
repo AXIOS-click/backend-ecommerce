@@ -4,5 +4,5 @@ package-lock.json
 .cache/
 *.marko.js
 .env.example
-.logs/*.log
+**/*.log
 dist/
