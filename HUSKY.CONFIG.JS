@@ -1,6 +1,6 @@
 // .huskyrc.js
 module.exports = {
   hooks: {
-    "pre-commit": "lint-staged",
+    "pre-commit": "npm run create-readme",
   },
 };
